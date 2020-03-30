@@ -1,6 +1,6 @@
 ---
 - name: Check for existance of required python
-- shell: 'which python'
+  shell: 'which python'
   register: which_python
   failed_when: which_python.rc != 0 and which_python.rc != 1
 
