@@ -8,7 +8,6 @@
     sysctl_set: yes
     state: present
     reload: yes
-  become: yes
 
 - include: configure-launchers.yml
   static: no
