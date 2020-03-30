@@ -10,7 +10,7 @@
   dnf:
     name: python2
     state: present
-    update_cache=yes
+    update_cache: yes
   when: ansible_facts['os_family'] == "RedHat"
 
 - name: Make python2 default
