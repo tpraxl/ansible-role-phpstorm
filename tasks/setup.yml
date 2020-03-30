@@ -1,9 +1,12 @@
 ---
-- name: Provide python2 for the commandline launcher
-  action: >
-    {{ ansible_pkg_mgr }} name={{ item }} state=present update_cache=yes
-  with_items:
-    - python2.7
+- name: Check for existance of required python
+- shell: 'which python'
+  register: which_python
+  failed_when: which_python.rc != 0 and which_python.rc != 1
+
+- name: Provide python for the commandline launcher
+  include_tasks: provide-python.yml
+  when: which_python.rc == 1
 
 - name: Check for existing PhpStorm install
   stat: path="{{ phpstorm_install_path }}"
