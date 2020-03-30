@@ -8,7 +8,7 @@
 
 - name: Provide python2 for the commandline launcher on RedHat systems
   dnf:
-    name: python2
+    name: ['python2', 'python2-dnf']
     state: present
     update_cache: yes
   when: ansible_facts['os_family'] == "RedHat"
