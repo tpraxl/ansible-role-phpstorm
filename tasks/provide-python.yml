@@ -1,20 +1,6 @@
 ---
-- name: Provide python2 for the commandline launcher on Debian systems
-  apt:
-    name: python
-    state: present
-    update_cache: yes
-  when: ansible_facts['os_family'] == "Debian"
-
-- name: Provide python2 for the commandline launcher on RedHat systems
-  dnf:
-    name: ['python2', 'python2-dnf']
-    state: present
-    update_cache: yes
-  when: ansible_facts['os_family'] == "RedHat"
-
-- name: Make python2 default
+- name: Make python3 default
   alternatives:
     name: python
     link: /usr/bin/python
-    path: /usr/bin/python2
+    path: /usr/bin/python3
