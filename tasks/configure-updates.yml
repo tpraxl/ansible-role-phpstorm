@@ -4,6 +4,7 @@
     paths: '{{ phpstorm_install_path }}/bin'
     patterns: '*.vmoptions'
   register: phpstorm_vmoptions_files
+  become: '{{ phpstorm_privileged_install }}'
 
 - name: Disable PhpStorm update checks
   lineinfile:
@@ -11,3 +12,4 @@
     regexp: '^-Dide\.no\.platform\.update'
     line: '-Dide.no.platform.update=true'
   with_items: '{{ phpstorm_vmoptions_files.files }}'
+  become: '{{ phpstorm_privileged_install }}'

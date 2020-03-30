@@ -4,6 +4,7 @@
     src: jetbrains-phpstorm.desktop.j2
     dest: /usr/share/applications/jetbrains-phpstorm.desktop
     mode: 0644
+  become: '{{ phpstorm_privileged_install }}'
 
 - name: Create PhpStorm command line launcher
   template:
@@ -11,3 +12,4 @@
     dest: /usr/local/bin/{{ phpstorm_commandline_launcher }}
     mode: 0755
   when: phpstorm_commandline_launcher != false
+  become: '{{ phpstorm_privileged_install }}'

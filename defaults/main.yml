@@ -12,3 +12,5 @@ phpstorm_cleanup_releases: []
 phpstorm_package: 'PhpStorm-{{ phpstorm_version }}.tar.gz'
 phpstorm_download_url: 'https://download.jetbrains.com/webide/{{ phpstorm_package }}'
 phpstorm_checksum_url: '{{ phpstorm_download_url }}.sha256'
+
+phpstorm_privileged_install: no

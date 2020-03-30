@@ -42,6 +42,7 @@
     path: "{{ phpstorm_install_path }}"
     state: directory
   when: not phpstorm_installed
+  become: '{{ phpstorm_privileged_install }}'
 
 - name: Extract PhpStorm package
   unarchive:
@@ -50,14 +51,17 @@
     remote_src: yes
     extra_opts: ['--strip-components=1']
   when: not phpstorm_installed
+  become: '{{ phpstorm_privileged_install }}'
 
 - name: Delete package file
   file:
     dest: "/tmp/{{ phpstorm_package }}"
     state: absent
+  become: '{{ phpstorm_privileged_install }}'
 
 - name: Cleanup old releases
   file:
     dest: "{{ phpstorm_install_basepath }}/{{ phpstorm_install_prefix }}-{{ item }}"
     state: absent
   with_items: "{{ phpstorm_cleanup_releases }}"
+  become: '{{ phpstorm_privileged_install }}'
