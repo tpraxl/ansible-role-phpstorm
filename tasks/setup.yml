@@ -3,6 +3,7 @@
   shell: 'which python'
   register: which_python
   failed_when: which_python.rc != 0 and which_python.rc != 1
+  changed_when: false
 
 - name: Provide python for the commandline launcher
   include_tasks: provide-python.yml

@@ -1,19 +1,16 @@
 ---
 - name: Provide python2 for the commandline launcher on Debian systems
   action: >
-    {{ ansible_pkg_mgr }} name={{ item }} state=present update_cache=yes
-  with_items:
-    - python
+    {{ ansible_pkg_mgr }} name=python state=present update_cache=yes
   when: ansible_facts['os_family'] == "Debian"
 
 - name: Provide python2 for the commandline launcher on RedHat systems
   action: >
-    {{ ansible_pkg_mgr }} name={{ item }} state=present update_cache=yes
-  with_items:
-    - python2
+    {{ ansible_pkg_mgr }} name=python2 state=present update_cache=yes
   when: ansible_facts['os_family'] == "RedHat"
 
 - name: Make python2 default
   alternatives:
     name: python
+    link: /usr/bin/python
     path: /usr/bin/python2
