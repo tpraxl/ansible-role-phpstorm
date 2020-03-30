@@ -34,6 +34,10 @@ Version number of old PhpStorm releases you want to delete. It is important to n
 
 Side note: Never delete the version from whom you are upgrading. It may be opened by a developer and this will lead to crashes.
 
+    phpstorm_privileged_install: no
+
+If your user has sufficient permissions, keep the default. If you need sudo privileges, set to `yes`.
+
 ## Dependencies
 
 None.
