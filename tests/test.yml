@@ -9,7 +9,17 @@
     - name: Update apt cache.
       apt: update_cache=yes cache_valid_time=600
       when: ansible_distribution == 'Ubuntu'
-
+    # prevent errors due to missing dnf-python2 package on CentOS 8
+    # and generally prefer using the appropriate python (2/3)
+    # instead of using /usr/bin/python, which is often
+    # python2 for us, because the commandline
+    # starter pstorm wants python, thus
+    # python2
+    - name: use appropriate python for ansible
+      set_fact:
+        # make sure, we're not using auto_legacy, which would
+        # result in /usr/bin/python
+        interpreter_python: auto
   roles:
     - geerlingguy.java
     - role_under_test
