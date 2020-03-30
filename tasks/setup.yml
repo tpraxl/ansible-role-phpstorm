@@ -3,7 +3,7 @@
   action: >
     {{ ansible_pkg_mgr }} name={{ item }} state=present update_cache=yes
   with_items:
-    - python2
+    - python-minimal
 
 - name: Check for existing PhpStorm install
   stat: path="{{ phpstorm_install_path }}"
