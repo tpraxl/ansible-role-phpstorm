@@ -1,4 +1,10 @@
 ---
+- name: Provide python2 for the commandline launcher
+  action: >
+    {{ ansible_pkg_mgr }} name={{ item }} state=present update_cache=yes
+  with_items:
+    - python2
+
 - name: Check for existing PhpStorm install
   stat: path="{{ phpstorm_install_path }}"
   register: _phpstorm_installed
